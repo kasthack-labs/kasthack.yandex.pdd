@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Deputy.cs" />
+    <Compile Include="Entities\DKIM.cs" />
     <Compile Include="Entities\Domain.cs" />
     <Compile Include="Entities\Email.cs" />
     <Compile Include="Entities\Import.cs" />
