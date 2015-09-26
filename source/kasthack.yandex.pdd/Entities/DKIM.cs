@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace kasthack.yandex.pdd.Entities
-{
-    public class StatusResponse : Response
-    {
+﻿namespace kasthack.yandex.pdd.Entities {
+    public class StatusResponse : Response {
         public DKIM Dkim { get; set; }
     }
 
@@ -16,10 +8,10 @@ namespace kasthack.yandex.pdd.Entities
     }
 
     public class DKIMBase {
-
         public bool Enabled { get; set; }
         public string Txtrecord { get; set; }
     }
+
     public class DKIM : DKIMBase {
         public bool NSReady { get; set; }
         public bool Mailready { get; set; }

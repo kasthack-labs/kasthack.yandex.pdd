@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace kasthack.yandex.pdd.Email {
     //public class PddEmailApi {
-        
+
     //}
 
     //public abstract class PddEmailRawApi {
@@ -23,7 +23,6 @@ namespace kasthack.yandex.pdd.Email {
         Male = 1,
         Female = 2
     }
-
 
     public class AddResponse : Response {
         public string Login { get; set; }
@@ -110,5 +109,4 @@ namespace kasthack.yandex.pdd.Email {
         public int Unread { get; set; }
         public int New { get; set; }
     }
-
 }

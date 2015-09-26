@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace kasthack.yandex.pdd.Domain
-{
-    public class DomainsResponse : PageableResponse
-    {
+namespace kasthack.yandex.pdd.Domain {
+    public class DomainsResponse : PageableResponse {
         public DomainInfo[] Domains { get; set; }
     }
 
-    public class RegisterResponse : Response{
+    public class RegisterResponse : Response {
         public Secrects Secrects { get; set; }
     }
-
 
     public class RegistrationStatusResponse : Response {
         public RegistrationStage Stage { get; set; }
@@ -24,8 +17,7 @@ namespace kasthack.yandex.pdd.Domain
         public Secrects Secrects { get; set; }
     }
 
-    public class DetailsResponse : Response
-    {
+    public class DetailsResponse : Response {
         public DomainStatus Status { get; set; }
         public RegistrationStage Stage { get; set; }
         public bool Delegated { get; set; }
@@ -44,7 +36,7 @@ namespace kasthack.yandex.pdd.Domain
         public DomainStatus Status { get; set; }
         public string Stage { get; set; }
         public string[] Aliases { get; set; }
-        public bool  LogoEnabled { get; set; }
+        public bool LogoEnabled { get; set; }
         public string LogoUrl { get; set; }
         public bool NsDelegationStatus { get; set; }
         public bool MasterAdmin { get; set; }
@@ -65,19 +57,20 @@ namespace kasthack.yandex.pdd.Domain
         GE,
         KZ,
     }
+
     public enum RegistrationStage {
         OwnerCheck,
         MXCheck,
         Added
     }
-    public enum DomainStatus
-    {
+
+    public enum DomainStatus {
         DomainActivate,
         MxActivate,
         Added
     }
-    public class Secrects
-    {
+
+    public class Secrects {
         public string Name { get; set; }
         public string Content { get; set; }
     }
@@ -92,5 +85,4 @@ namespace kasthack.yandex.pdd.Domain
         MXWrong,
         MXNotFound
     }
-
 }

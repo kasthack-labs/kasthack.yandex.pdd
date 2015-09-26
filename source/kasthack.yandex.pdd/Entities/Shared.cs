@@ -1,24 +1,19 @@
 ﻿using System;
 
-namespace kasthack.yandex.pdd
-{
-
-
-    public interface IResponse
-    {
+namespace kasthack.yandex.pdd {
+    public interface IResponse {
         string Domain { get; set; }
         bool Success { get; set; }
         ErrorCode Error { get; set; }
     }
 
-    public abstract class Response : IResponse
-    {
+    public abstract class Response : IResponse {
         public string Domain { get; set; }
         public bool Success { get; set; }
         public ErrorCode Error { get; set; }
     }
-    public enum ErrorCode
-    {
+
+    public enum ErrorCode {
         Unknown,
         NoToken,
         BadDomain,
@@ -39,5 +34,5 @@ namespace kasthack.yandex.pdd
         public int Found { get; set; }
     }
 
-    public class YaException : Exception { }
+    public class YaException : Exception {}
 }
