@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace kasthack.yandex.pdd {
-    public class PddEmailApi {
+namespace kasthack.yandex.pdd.Email {
+    //public class PddEmailApi {
         
-    }
+    //}
 
-    public abstract class PddEmailRawApi {
-        //private const string root = "https://pddimp.yandex.ru/api2/email";
-        //public abstract Task<string> Add( string login, string password );
-        //public abstract Task<string> List( int? page = null, int? onPage = null );
-        //public abstract Task<string> Edit( AccountBase account );
-        //public abstract Task<string> Del( AccountId id );
-        //public abstract Task<string> Counters( AccountId id );
-    }
+    //public abstract class PddEmailRawApi {
+    //    //private const string root = "https://pddimp.yandex.ru/api2/email";
+    //    //public abstract Task<string> Add( string login, string password );
+    //    //public abstract Task<string> List( int? page = null, int? onPage = null );
+    //    //public abstract Task<string> Edit( AccountBase account );
+    //    //public abstract Task<string> Del( AccountId id );
+    //    //public abstract Task<string> Counters( AccountId id );
+    //}
 
     public enum Sex {
         Default = 0,
@@ -24,42 +24,13 @@ namespace kasthack.yandex.pdd {
         Female = 2
     }
 
-    public enum ErrorCode {
-        Unknown,
-        NoToken,
-        BadDomain,
-        Prohibited,
-        BadToken,
-        NoAuth,
-        NotAllowed,
-        Blocked,
-        Occupied,
-        DomainLimitReached,
-        NoReply
-    }
-
-    public interface IResponse {
-        string Domain { get; set; }
-        bool Success { get; set; }
-        ErrorCode Error { get; set; }
-    }
-
-    public abstract class Response : IResponse {
-        public string Domain { get; set; }
-        public bool Success { get; set; }
-        public ErrorCode Error { get; set; }
-    }
 
     public class AddResponse : Response {
         public string Login { get; set; }
         public long Uid { get; set; }
     }
 
-    public class ListResponse : Response {
-        public int Page { get; set; }
-        public int OnPage { get; set; }
-        public int Total { get; set; }
-        public int Found { get; set; }
+    public class ListResponse : PageableResponse {
         public Account[] Accounts { get; set; }
     }
 
@@ -140,5 +111,4 @@ namespace kasthack.yandex.pdd {
         public int New { get; set; }
     }
 
-    public class YaException : Exception {}
 }

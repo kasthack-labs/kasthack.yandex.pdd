@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Email.cs" />
+    <Compile Include="Entities\Domain.cs" />
+    <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\MailLists.cs" />
+    <Compile Include="Entities\Shared.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
