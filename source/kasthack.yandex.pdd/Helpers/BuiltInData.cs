@@ -1,0 +1,28 @@
+/*
+        stuff from https://github.com/kasthack/VKSharp/blob/master/Sources/VKSharp/Helpers/
+*/
+
+using System;
+using System.Globalization;
+using System.Text;
+
+namespace kasthack.yandex.pdd.Helpers {
+    internal class BuiltInData {
+        private static readonly Lazy<BuiltInData> Lazy = new Lazy<BuiltInData>( () => new BuiltInData() );
+
+        internal static BuiltInData Instance => Lazy.Value;
+
+        public string ApiDomain { get; }
+
+        public string OAuthURL { get; }
+
+        public Encoding TextEncoding { get; } = Encoding.UTF8;
+
+        public CultureInfo NC { get; } = CultureInfo.InvariantCulture;
+
+        private BuiltInData() {
+            ApiDomain = "";
+            OAuthURL = "";
+        }
+    }
+}
