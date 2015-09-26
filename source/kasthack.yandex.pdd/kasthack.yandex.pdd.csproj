@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entities\Domain.cs" />
     <Compile Include="Entities\Email.cs" />
+    <Compile Include="Entities\Import.cs" />
     <Compile Include="Entities\MailLists.cs" />
     <Compile Include="Entities\Shared.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
