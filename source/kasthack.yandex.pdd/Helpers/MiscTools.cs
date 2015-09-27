@@ -3,8 +3,11 @@
 */
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace kasthack.yandex.pdd.Helpers {
     internal static class MiscTools {
@@ -42,20 +45,15 @@ namespace kasthack.yandex.pdd.Helpers {
             return t.ToString();
         }
 
-        public static string NullableString<T>( T? input ) where T : struct, IFormattable {
-            return input.HasValue ? input.Value.ToNCString() : "";
-        }
+        public static string ToNCString<T>( this T? input ) where T : struct, IFormattable => input.HasValue ? input.Value.ToNCString() : "";
 
-        public static string ToNCString<T>( this T value ) where T : IFormattable {
-            return ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC );
-        }
+        public static string ToNCString<T>( this T value ) where T : IFormattable => ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC );
 
-        public static string ToNClString<T>( this T value ) where T : IFormattable {
-            return ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC ).ToLower( BuiltInData.Instance.NC );
-        }
+        public static string ToNClString<T>( this T value ) where T : IFormattable => ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC ).ToLower( BuiltInData.Instance.NC );
 
-        public static string ToNCStringA<T>( this IEnumerable<T> value ) where T : IFormattable {
-            return String.Join( ",", value.Select( a => ToNCString<T>( a ) ) );
-        }
-    }
+        public static string ToNCStringA<T>( this IEnumerable<T> value ) where T : IFormattable => String.Join( ",", value.Select( a => ToNCString<T>( a ) ) );
+        public static string ToYesNo( this bool value ) => value ? "yes" : "no";
+        public static string ToYesNo(this bool? value) => value?.ToYesNo();
+        public static JsonReader ToJSONReader(this string source) => new JsonTextReader(new StringReader( source ));
+    }//
 }

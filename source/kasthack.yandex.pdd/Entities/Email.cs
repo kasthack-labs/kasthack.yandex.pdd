@@ -10,7 +10,7 @@ namespace kasthack.yandex.pdd.Email {
     //}
 
     //public abstract class PddEmailRawApi {
-    //    //private const string root = "https://pddimp.yandex.ru/api2/email";
+    //    //private const string root = "https://pddimp.yandex.ru/api2/admin";
     //    //public abstract Task<string> Add( string login, string password );
     //    //public abstract Task<string> List( int? page = null, int? onPage = null );
     //    //public abstract Task<string> Edit( AccountBase account );
@@ -37,7 +37,7 @@ namespace kasthack.yandex.pdd.Email {
         public AccountF Account { get; set; }
     }
 
-    public class DeleteResponce : Response {
+    public class DelResponse : Response {
         public string Login { get; set; }
     }
 
@@ -49,10 +49,11 @@ namespace kasthack.yandex.pdd.Email {
         public string Login { get; set; }
         public long? Uid { get; set; }
 
-        public static explicit operator AccountId( long? uid ) => new AccountId() { Uid = uid };
-        public static explicit operator AccountId( int? uid ) => new AccountId() { Uid = uid };
-        public static explicit operator AccountId( int uid ) => new AccountId() { Uid = uid };
-        public static explicit operator AccountId( long uid ) => new AccountId() { Uid = uid };
+        public static implicit operator AccountId(string login) => new AccountId() { Login = login };
+        public static implicit operator AccountId( long? uid ) => new AccountId() { Uid = uid };
+        public static implicit operator AccountId( int? uid ) => new AccountId() { Uid = uid };
+        public static implicit operator AccountId( int uid ) => new AccountId() { Uid = uid };
+        public static implicit operator AccountId( long uid ) => new AccountId() { Uid = uid };
     }
 
     public class AccountBase : AccountId {

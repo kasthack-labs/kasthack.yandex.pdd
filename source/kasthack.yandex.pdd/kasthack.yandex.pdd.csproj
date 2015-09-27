@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Typed\MailMethods.cs" />
+    <Compile Include="Api\Raw\MailRawMethods.cs" />
+    <Compile Include="Api\PddApi.cs" />
+    <Compile Include="Api\PddRawApi.cs" />
     <Compile Include="Entities\Deputy.cs" />
     <Compile Include="Entities\DKIM.cs" />
     <Compile Include="Entities\DNS.cs" />
@@ -55,11 +60,10 @@
     <Compile Include="Helpers\BuiltInData.cs" />
     <Compile Include="Helpers\JsonConverters.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
+    <Compile Include="Helpers\SerializerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
