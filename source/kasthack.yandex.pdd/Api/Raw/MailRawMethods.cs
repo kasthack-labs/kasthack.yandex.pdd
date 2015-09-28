@@ -33,7 +33,8 @@ namespace kasthack.yandex.pdd {
             { nameof( account.Hinta ).ToLowerInvariant(), account.Hinta },
             { nameof( account.Hintq ).ToLowerInvariant(), account.Hintq },
             { nameof( account.Iname ).ToLowerInvariant(), account.Iname },
-            { nameof( account.Password ).ToLowerInvariant(), account.Iname },
+            { "birth_date", account.BirthDate?.ToString("YYYY-MM-DD") },
+            { nameof( account.Password ).ToLowerInvariant(), account.Password },
         }).ConfigureAwait(false);
 
         public async Task<string> Del(AccountId id) => await _parent.ProcessRequestPost("email/del", new Dictionary<string, string>() {

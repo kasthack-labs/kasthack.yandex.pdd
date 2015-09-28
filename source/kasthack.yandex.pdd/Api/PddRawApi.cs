@@ -2,41 +2,53 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using kasthack.yandex.pdd.Helpers;
 
 namespace kasthack.yandex.pdd {
 
     public class PddRawApi {
         private static readonly HttpClient Client;
-        public string Token { get; set; }
+        public string PddToken { get; set; }
+        public YaToken AuthToken { get; set; }
         public DomainRawContext Domain(string domain) => new DomainRawContext( this, domain );
-        static PddRawApi() { Client = new HttpClient() { BaseAddress = new Uri( "https://pddimp.yandex.ru/api2/admin" ) }; }
+        static PddRawApi() { Client = new HttpClient() { }; }
+
+        private void UpdateHeaders(HttpRequestHeaders headers) {
+            headers.Add( "PddToken", PddToken  );
+            headers.Authorization = AuthenticationHeaderValue.Parse( $"OAuth {AuthToken.Token}" );
+        }
         internal async Task<string> ProcessRequestPost( string method, IEnumerable<KeyValuePair<string, string>> parameters) {
+            var message = new HttpRequestMessage {
+                Method = HttpMethod.Post,
+                Content = new FormUrlEncodedContent(parameters),
+                RequestUri = BuildMethodUri(method),
+            };
+            UpdateHeaders( message.Headers );
             return
                 await
                 ( await
                   Client.SendAsync(
-                      new HttpRequestMessage() {
-                          Method = HttpMethod.Post,
-                          Headers = { { "PddToken", Token } },
-                          Content = new FormUrlEncodedContent(parameters),
-                          RequestUri = new Uri( method, UriKind.Relative ),
-                      } ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
+                      message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
         }
+
         internal async Task<string> ProcessRequestGet(string method, IEnumerable<KeyValuePair<string, string>> parameters)
         {
             var ps = HttpUtility.ParseQueryString( string.Empty );//it's _NOT_ just namevaluecollection
             foreach ( var parameter in parameters) ps[ parameter.Key ] = parameter.Value;
-            var urin = new UriBuilder( new Uri( method, UriKind.Relative ) ) { Query = ps.ToString() };
+            var message = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new UriBuilder( BuildMethodUri( method ) ) { Query = ps.ToString() }.Uri,
+            };
+            UpdateHeaders( message.Headers );
             return await ( await Client.SendAsync(
-                new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                    Headers = { { "PddToken", Token } },
-                    RequestUri = urin.Uri,
-                }).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
+                message).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
         }
+
+        private static Uri BuildMethodUri( string method ) { return new Uri( new Uri( BuiltInData.Instance.ApiDomain), method); }
     }
 
     public class DomainRawContext {
@@ -53,9 +65,10 @@ namespace kasthack.yandex.pdd {
 
         private IEnumerable<KeyValuePair<string, string>> PrepareParams(IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            var ret = parameters.Where(a => a.Key != null && a.Value != null).ToList();
+            var ret = new List<KeyValuePair<string,string>>();//parameters.Where(a => a.Key != null && a.Value != null).ToList();
             if (_domain != null)
                 ret.Add(new KeyValuePair<string, string>("domain", _domain));
+            ret.AddRange(parameters.Where(a => a.Key != null && a.Value != null));
             return ret;
         }
         internal async Task<string> ProcessRequestPost(string method, IEnumerable<KeyValuePair<string, string>> parameters)

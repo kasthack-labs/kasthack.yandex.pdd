@@ -49,6 +49,7 @@
     <Compile Include="Api\Raw\MailRawMethods.cs" />
     <Compile Include="Api\PddApi.cs" />
     <Compile Include="Api\PddRawApi.cs" />
+    <Compile Include="Api\YaToken.cs" />
     <Compile Include="Entities\Deputy.cs" />
     <Compile Include="Entities\DKIM.cs" />
     <Compile Include="Entities\DNS.cs" />

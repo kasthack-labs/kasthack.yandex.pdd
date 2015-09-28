@@ -5,17 +5,30 @@ namespace kasthack.yandex.pdd.Api {
     public class PddApi {
         internal static readonly JsonSerializer Serializer = SerializerFactory.GetSerializer();
         internal readonly PddRawApi Raw;
-        public string Token
+        public string PddToken
         {
-            get { return Raw.Token; }
-            set { Raw.Token = value; }
+            get { return Raw.PddToken; }
+            set { Raw.PddToken = value; }
         }
 
-        public PddApi() : this( null ) { }
+        public YaToken AuthToken
+        {
+            get
+            {
+                return Raw.AuthToken;
+            }
+            set
+            {
+                Raw.AuthToken = value;
+            }
+        }
 
-        public PddApi(string token) {
+        public PddApi() : this( null, null ) { }
+
+        public PddApi(string pddtoken, YaToken authtoken) {
             Raw = new PddRawApi();
-            if ( token != null ) Token = token;
+            if (pddtoken != null ) PddToken = pddtoken;
+            if ( authtoken != null ) AuthToken = authtoken;
         }
 
         public DomainContext Domain(string domain) => new DomainContext( this, domain );

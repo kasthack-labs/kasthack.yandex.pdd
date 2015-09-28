@@ -68,7 +68,8 @@ namespace kasthack.yandex.pdd.Email {
             bool? enabled = null,
             Sex? sex = null,
             string hintq = null,
-            string hinta = null ) {
+            string hinta = null,
+            DateTime? birthDate = null) {
             Uid = uid;
             Login = login;
             Password = password;
@@ -78,6 +79,7 @@ namespace kasthack.yandex.pdd.Email {
             Sex = sex;
             Hintq = hintq;
             Hinta = hinta;
+            BirthDate = birthDate;
         }
 
         public string Password { get; set; }
@@ -93,10 +95,11 @@ namespace kasthack.yandex.pdd.Email {
         public string Hintq { get; set; }
 
         public string Hinta { get; set; }
+
+        public DateTime? BirthDate { get; set; }
     }
 
     public class Account : AccountBase {
-        public DateTime BirthDate { get; set; }
         public bool Ready { get; set; }
         public bool MailList { get; set; }
         public string[] Aliases { get; set; }
