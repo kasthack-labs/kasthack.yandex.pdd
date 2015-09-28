@@ -65,7 +65,7 @@ namespace kasthack.yandex.pdd {
 
         private IEnumerable<KeyValuePair<string, string>> PrepareParams(IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            var ret = new List<KeyValuePair<string,string>>();//parameters.Where(a => a.Key != null && a.Value != null).ToList();
+            var ret = new List<KeyValuePair<string,string>>();
             if (_domain != null)
                 ret.Add(new KeyValuePair<string, string>("domain", _domain));
             ret.AddRange(parameters.Where(a => a.Key != null && a.Value != null));

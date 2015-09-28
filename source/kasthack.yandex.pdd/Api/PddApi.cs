@@ -1,7 +1,7 @@
 ﻿using kasthack.yandex.pdd.Helpers;
 using Newtonsoft.Json;
 
-namespace kasthack.yandex.pdd.Api {
+namespace kasthack.yandex.pdd {
     public class PddApi {
         internal static readonly JsonSerializer Serializer = SerializerFactory.GetSerializer();
         internal readonly PddRawApi Raw;
