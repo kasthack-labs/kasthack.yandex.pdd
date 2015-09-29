@@ -49,11 +49,11 @@ namespace kasthack.yandex.pdd.Email {
         public string Login { get; set; }
         public long? Uid { get; set; }
 
-        public static implicit operator AccountId(string login) => new AccountId() { Login = login };
-        public static implicit operator AccountId( long? uid ) => new AccountId() { Uid = uid };
-        public static implicit operator AccountId( int? uid ) => new AccountId() { Uid = uid };
-        public static implicit operator AccountId( int uid ) => new AccountId() { Uid = uid };
-        public static implicit operator AccountId( long uid ) => new AccountId() { Uid = uid };
+        public static implicit operator AccountId(string login) => new AccountId { Login = login };
+        public static implicit operator AccountId( long? uid ) => new AccountId { Uid = uid };
+        public static implicit operator AccountId( int? uid ) => new AccountId { Uid = uid };
+        public static implicit operator AccountId( int uid ) => new AccountId { Uid = uid };
+        public static implicit operator AccountId( long uid ) => new AccountId { Uid = uid };
         public override string ToString() => $"{Login} [UID={Uid}]";
     }
 

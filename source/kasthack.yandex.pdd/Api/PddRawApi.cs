@@ -14,7 +14,7 @@ namespace kasthack.yandex.pdd {
         public string PddToken { get; set; }
         public YaToken AuthToken { get; set; }
         public DomainRawContext Domain(string domain) => new DomainRawContext( this, domain );
-        static PddRawApi() { Client = new HttpClient() { }; }
+        static PddRawApi() { Client = new HttpClient { }; }
 
         private void UpdateHeaders(HttpRequestHeaders headers) {
             headers.Add( "PddToken", PddToken  );
@@ -38,8 +38,7 @@ namespace kasthack.yandex.pdd {
         {
             var ps = HttpUtility.ParseQueryString( string.Empty );//it's _NOT_ just namevaluecollection
             foreach ( var parameter in parameters) ps[ parameter.Key ] = parameter.Value;
-            var message = new HttpRequestMessage()
-            {
+            var message = new HttpRequestMessage {
                 Method = HttpMethod.Get,
                 RequestUri = new UriBuilder( BuildMethodUri( method ) ) { Query = ps.ToString() }.Uri,
             };
