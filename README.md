@@ -10,7 +10,7 @@ var unread =
             new PddApi(
                 "PddToken",
                 /*
-                    get it here: https://pddimp.yandex.ru/api2/registrar/get_token
+                    get it here: https://pddimp.yandex.ru/api2/admin/get_token
                 */
                 "OAuthToken"
                 /*

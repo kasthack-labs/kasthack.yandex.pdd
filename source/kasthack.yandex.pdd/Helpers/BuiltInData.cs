@@ -14,7 +14,7 @@ namespace kasthack.yandex.pdd.Helpers {
 
         public string ApiDomain { get; }
 
-        public string OAuthURL { get; }
+        public string OAuthTokenUri { get; }
 
         public Encoding TextEncoding { get; } = Encoding.UTF8;
 
@@ -22,7 +22,7 @@ namespace kasthack.yandex.pdd.Helpers {
 
         private BuiltInData() {
             ApiDomain = "https://pddimp.yandex.ru/api2/admin/";
-            OAuthURL = "https://oauth.yandex.ru/authorize?response_type=token&client_id={0}";
+            OAuthTokenUri = "https://oauth.yandex.ru/authorize?response_type=token&client_id={0}";
         }
     }
 }
