@@ -54,6 +54,7 @@ namespace kasthack.yandex.pdd.Email {
         public static implicit operator AccountId( int? uid ) => new AccountId() { Uid = uid };
         public static implicit operator AccountId( int uid ) => new AccountId() { Uid = uid };
         public static implicit operator AccountId( long uid ) => new AccountId() { Uid = uid };
+        public override string ToString() => $"{Login} [UID={Uid}]";
     }
 
     public class AccountBase : AccountId {
