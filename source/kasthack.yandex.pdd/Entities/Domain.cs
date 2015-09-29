@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace kasthack.yandex.pdd.Domain {
     public class DomainsResponse : PageableResponse {
@@ -38,10 +40,13 @@ namespace kasthack.yandex.pdd.Domain {
         public string[] Aliases { get; set; }
         public bool LogoEnabled { get; set; }
         public string LogoUrl { get; set; }
-        public bool NsDelegationStatus { get; set; }
+        public bool NsDelegated { get; set; }
         public bool MasterAdmin { get; set; }
+        [JsonProperty("dkim-ready")]
         public bool DkimReady { get; set; }
+        [JsonProperty("emails-max-count")]
         public int EmailsMaxCount { get; set; }
+        [JsonProperty("emails-count")]
         public int EmailsCount { get; set; }
         public bool NoDKIM { get; set; }
     }

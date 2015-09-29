@@ -58,9 +58,21 @@ namespace kasthack.yandex.pdd {
         internal DomainRawContext( PddRawApi api, string domain ) {
             _api = api;
             _domain = domain;
+            Deputy = new DeputyRawMethods( this );
+            Dns = new DnsRawMethods( this );
+            Dkim = new DkimRawMethods( this );
+            Domain = new DomainRawMethods( this );
+            Import = new ImportRawMethods( this );
+            MailList = new MailListRawMethods( this );
             Mail = new MailRawMethods( this );
         }
 
+        public DeputyRawMethods Deputy { get; }
+        public DnsRawMethods Dns { get; }
+        public DkimRawMethods Dkim { get; }
+        public DomainRawMethods Domain { get; }
+        public ImportRawMethods Import { get; }
+        public MailListRawMethods MailList { get; }
         public MailRawMethods Mail { get; }
 
         private IEnumerable<KeyValuePair<string, string>> PrepareParams(IEnumerable<KeyValuePair<string, string>> parameters)

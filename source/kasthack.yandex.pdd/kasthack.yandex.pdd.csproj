@@ -45,10 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Raw\DeputyRawMethods.cs" />
+    <Compile Include="Api\Raw\DkimRawMethods.cs" />
+    <Compile Include="Api\Raw\DnsRawMethods.cs" />
+    <Compile Include="Api\Raw\DomainRawMethods.cs" />
+    <Compile Include="Api\Raw\ImportRawMethods.cs" />
+    <Compile Include="Api\Raw\MailListRawMethods.cs" />
+    <Compile Include="Api\Raw\RawMethodsBase.cs" />
+    <Compile Include="Api\Typed\DeputyMethods.cs" />
+    <Compile Include="Api\Typed\DkimMethods.cs" />
+    <Compile Include="Api\Typed\DnsMethods.cs" />
+    <Compile Include="Api\Typed\DomainMethods.cs" />
+    <Compile Include="Api\Typed\ImportMethods.cs" />
+    <Compile Include="Api\Typed\MailListMethods.cs" />
     <Compile Include="Api\Typed\MailMethods.cs" />
     <Compile Include="Api\Raw\MailRawMethods.cs" />
     <Compile Include="Api\PddApi.cs" />
     <Compile Include="Api\PddRawApi.cs" />
+    <Compile Include="Api\Typed\MethodsBase.cs" />
     <Compile Include="Api\YaToken.cs" />
     <Compile Include="Entities\Deputy.cs" />
     <Compile Include="Entities\DKIM.cs" />

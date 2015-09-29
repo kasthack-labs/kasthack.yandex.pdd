@@ -13,7 +13,7 @@
     }
 
     public class DKIM : DKIMBase {
-        public bool NSReady { get; set; }
+        public bool Nsready { get; set; }
         public bool Mailready { get; set; }
         public string Secretkey { get; set; }
     }
