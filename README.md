@@ -29,7 +29,8 @@ var unread =
     .Counters
     .Unread;
 ```
-## Implemented Methods
+## API coverage
+### Implemented
 * Mail
     * Add
     * Del
@@ -67,3 +68,14 @@ var unread =
     * Unsubscribe
     * GetCanSendOnBehalf
     * SetCanSendOnBehalf
+### Missing
+* Deputy
+    * Add
+    * List
+    * Delete
+* Maillist
+    * Import file
+* Domain
+    * SetLogo
+* Domains
+    * List
