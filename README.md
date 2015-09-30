@@ -36,3 +36,34 @@ var unread =
     * List
     * Edit
     * Counters
+* DKIM
+    * Status
+    * Enable
+    * Disable
+* DNS
+    * Add
+    * List
+    * Edit
+    * Delete
+* Domain
+    * Register
+    * RegistrationStatus
+    * Details
+    * Delete
+    * SetCountry
+    * GetLogo
+    * DeleteLogo
+* Import
+    * CheckSettings
+    * StartOneImport
+    * CheckImport
+    * StopAllImports
+* Maillist[raw]
+    * Add
+    * List
+    * Delete
+    * Subscribe
+    * Subscribers
+    * Unsubscribe
+    * GetCanSendOnBehalf
+    * SetCanSendOnBehalf
