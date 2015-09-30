@@ -1,6 +1,18 @@
 ﻿namespace kasthack.yandex.pdd.Dns {
-    public class RecordRespone : Response {
+    public class RecordResponse : Response {
         public Record Record { get; set; }
+    }
+
+    public class DeleteRespone : Response {
+        public long RecordId { get; set; }
+    }
+
+    public class EditRecordResponse : RecordResponse {
+        public long RecordId { get; set; }
+    }
+
+    public class RecordsResponse : Response {
+        public Record[] Records { get; set; }
     }
 
     public class AddRecord {

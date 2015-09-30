@@ -1,4 +1,4 @@
-﻿namespace kasthack.yandex.pdd.Entities {
+﻿namespace kasthack.yandex.pdd.Dkim {
     public class StatusResponse : Response {
         public DKIM Dkim { get; set; }
     }

@@ -19,11 +19,11 @@
 
     public class AddResponse : MaillistUidResponse {}
 
-    public class LisResponse {
+    public class ListResponse {
         public MailList[] Maillists { get; set; }
     }
 
-    public class DelResponse : MaillistResponse {}
+    public class DeleteResponse : MaillistResponse {}
 
     public class SubscribeResponse : SubscriberResponse {}
 
@@ -41,12 +41,14 @@
 
     public class SetCanSendResponse : RightsResponse {}
 
-    public class MailListBase {
+    public class MailListId {
         public string Maillist { get; set; }
-        public long Uid { get; set; }
+        public long? Uid { get; set; }
+        public static implicit operator MailListId( string maillist ) => new MailListId { Maillist = maillist };
+        public static implicit operator MailListId( long uid ) => new MailListId { Uid = uid };
     }
 
-    public class MailList : MailListBase {
+    public class MailList : MailListId {
         public int Cnt { get; set; }
     }
 }

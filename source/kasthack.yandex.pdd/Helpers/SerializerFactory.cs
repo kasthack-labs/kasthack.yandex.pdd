@@ -1,6 +1,7 @@
 ﻿/*
         stuff from https://github.com/kasthack/VKSharp/blob/master/Sources/VKSharp/Helpers/
 */
+
 using System.Reflection;
 using Newtonsoft.Json;
 

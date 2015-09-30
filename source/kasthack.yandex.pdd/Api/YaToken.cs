@@ -27,12 +27,10 @@ namespace kasthack.yandex.pdd {
                               .Where( a => a.Length == 2 )
                               .GroupBy( a => a[ 0 ] )
                               .ToDictionary( a => a.Key, a => a.First()[ 1 ] );
-            if (query.ContainsKey( errorPn ))
-                throw new AuthenticationException( $"Error: {query[errorPn]}" );
+            if ( query.ContainsKey( errorPn ) ) throw new AuthenticationException( $"Error: {query[ errorPn ]}" );
 
             string token;
-            if (!query.TryGetValue( accessTokenPn, out token ))
-                throw new FormatException("Can't parse Ya response from URL");
+            if ( !query.TryGetValue( accessTokenPn, out token ) ) throw new FormatException( "Can't parse Ya response from URL" );
 
             long expiresv;
             {

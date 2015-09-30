@@ -8,46 +8,40 @@ using System.Web;
 using kasthack.yandex.pdd.Helpers;
 
 namespace kasthack.yandex.pdd {
-
     public class PddRawApi {
         private static readonly HttpClient Client;
         public string PddToken { get; set; }
         public YaToken AuthToken { get; set; }
-        public DomainRawContext Domain(string domain) => new DomainRawContext( this, domain );
+        public DomainRawContext Domain( string domain ) => new DomainRawContext( this, domain );
         static PddRawApi() { Client = new HttpClient { }; }
 
-        private void UpdateHeaders(HttpRequestHeaders headers) {
-            headers.Add( "PddToken", PddToken  );
+        private void UpdateHeaders( HttpRequestHeaders headers ) {
+            headers.Add( "PddToken", PddToken );
             headers.Authorization = AuthenticationHeaderValue.Parse( $"OAuth {AuthToken.Token}" );
         }
-        internal async Task<string> ProcessRequestPost( string method, IEnumerable<KeyValuePair<string, string>> parameters) {
+
+        internal async Task<string> ProcessRequestPost( string method, IEnumerable<KeyValuePair<string, string>> parameters ) {
             var message = new HttpRequestMessage {
                 Method = HttpMethod.Post,
-                Content = new FormUrlEncodedContent(parameters),
-                RequestUri = BuildMethodUri(method),
+                Content = new FormUrlEncodedContent( parameters ),
+                RequestUri = BuildMethodUri( method ),
             };
             UpdateHeaders( message.Headers );
-            return
-                await
-                ( await
-                  Client.SendAsync(
-                      message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
+            return await ( await Client.SendAsync( message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
         }
 
-        internal async Task<string> ProcessRequestGet(string method, IEnumerable<KeyValuePair<string, string>> parameters)
-        {
-            var ps = HttpUtility.ParseQueryString( string.Empty );//it's _NOT_ just namevaluecollection
-            foreach ( var parameter in parameters) ps[ parameter.Key ] = parameter.Value;
+        internal async Task<string> ProcessRequestGet( string method, IEnumerable<KeyValuePair<string, string>> parameters ) {
+            var ps = HttpUtility.ParseQueryString( string.Empty ); //it's _NOT_ just namevaluecollection
+            foreach ( var parameter in parameters ) ps[ parameter.Key ] = parameter.Value;
             var message = new HttpRequestMessage {
                 Method = HttpMethod.Get,
                 RequestUri = new UriBuilder( BuildMethodUri( method ) ) { Query = ps.ToString() }.Uri,
             };
             UpdateHeaders( message.Headers );
-            return await ( await Client.SendAsync(
-                message).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
+            return await ( await Client.SendAsync( message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
         }
 
-        private static Uri BuildMethodUri( string method ) { return new Uri( new Uri( BuiltInData.Instance.ApiDomain), method); }
+        private static Uri BuildMethodUri( string method ) { return new Uri( new Uri( BuiltInData.Instance.ApiDomain ), method ); }
     }
 
     public class DomainRawContext {
@@ -74,17 +68,17 @@ namespace kasthack.yandex.pdd {
         public MailListRawMethods MailList { get; }
         public MailRawMethods Mail { get; }
 
-        private IEnumerable<KeyValuePair<string, string>> PrepareParams(IEnumerable<KeyValuePair<string, string>> parameters)
-        {
-            var ret = new List<KeyValuePair<string,string>>();
-            if (_domain != null)
-                ret.Add(new KeyValuePair<string, string>("domain", _domain));
-            ret.AddRange(parameters.Where(a => a.Key != null && a.Value != null));
+        private IEnumerable<KeyValuePair<string, string>> PrepareParams( IEnumerable<KeyValuePair<string, string>> parameters ) {
+            var ret = new List<KeyValuePair<string, string>>();
+            if ( _domain != null ) ret.Add( new KeyValuePair<string, string>( "domain", _domain ) );
+            ret.AddRange( parameters.Where( a => a.Key != null && a.Value != null ) );
             return ret;
         }
-        internal async Task<string> ProcessRequestPost(string method, IEnumerable<KeyValuePair<string, string>> parameters)
-            => await _api.ProcessRequestPost(method, PrepareParams(parameters));
-        internal async Task<string> ProcessRequestGet( string method, IEnumerable<KeyValuePair<string, string>> parameters )
-            => await _api.ProcessRequestGet( method, PrepareParams( parameters ) );
+
+        internal async Task<string> ProcessRequestPost( string method, IEnumerable<KeyValuePair<string, string>> parameters ) =>
+            await _api.ProcessRequestPost( method, PrepareParams( parameters ) );
+
+        internal async Task<string> ProcessRequestGet( string method, IEnumerable<KeyValuePair<string, string>> parameters ) =>
+            await _api.ProcessRequestGet( method, PrepareParams( parameters ) );
     }
 }

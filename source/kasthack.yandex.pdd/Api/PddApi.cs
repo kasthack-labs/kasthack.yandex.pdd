@@ -42,7 +42,6 @@ namespace kasthack.yandex.pdd {
             Import = new ImportMethods( rawContext.Import );
             MailList = new MailListMethods( rawContext.MailList );
             Mail = new MailMethods( rawContext.Mail );
-
         }
 
         public DeputyMethods Deputy { get; }

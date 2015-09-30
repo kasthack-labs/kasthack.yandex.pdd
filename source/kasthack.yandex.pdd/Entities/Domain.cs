@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace kasthack.yandex.pdd.Domain {
@@ -30,6 +29,7 @@ namespace kasthack.yandex.pdd.Domain {
     }
 
     public class LogoCheckResponse : Response {
+        [JsonProperty( "logo-url" )]
         public string LogoUrl { get; set; }
     }
 
@@ -42,12 +42,16 @@ namespace kasthack.yandex.pdd.Domain {
         public string LogoUrl { get; set; }
         public bool NsDelegated { get; set; }
         public bool MasterAdmin { get; set; }
-        [JsonProperty("dkim-ready")]
+
+        [JsonProperty( "dkim-ready" )]
         public bool DkimReady { get; set; }
-        [JsonProperty("emails-max-count")]
+
+        [JsonProperty( "emails-max-count" )]
         public int EmailsMaxCount { get; set; }
-        [JsonProperty("emails-count")]
+
+        [JsonProperty( "emails-count" )]
         public int EmailsCount { get; set; }
+
         public bool NoDKIM { get; set; }
     }
 

@@ -1,23 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace kasthack.yandex.pdd.Email {
-    //public class PddEmailApi {
-
-    //}
-
-    //public abstract class PddEmailRawApi {
-    //    //private const string root = "https://pddimp.yandex.ru/api2/admin";
-    //    //public abstract Task<string> Add( string login, string password );
-    //    //public abstract Task<string> List( int? page = null, int? onPage = null );
-    //    //public abstract Task<string> Edit( AccountBase account );
-    //    //public abstract Task<string> Del( AccountId id );
-    //    //public abstract Task<string> Counters( AccountId id );
-    //}
-
     public enum Sex {
         Default = 0,
         Male = 1,
@@ -49,10 +32,8 @@ namespace kasthack.yandex.pdd.Email {
         public string Login { get; set; }
         public long? Uid { get; set; }
 
-        public static implicit operator AccountId(string login) => new AccountId { Login = login };
+        public static implicit operator AccountId( string login ) => new AccountId { Login = login };
         public static implicit operator AccountId( long? uid ) => new AccountId { Uid = uid };
-        public static implicit operator AccountId( int? uid ) => new AccountId { Uid = uid };
-        public static implicit operator AccountId( int uid ) => new AccountId { Uid = uid };
         public static implicit operator AccountId( long uid ) => new AccountId { Uid = uid };
         public override string ToString() => $"{Login} [UID={Uid}]";
     }
@@ -70,7 +51,7 @@ namespace kasthack.yandex.pdd.Email {
             Sex? sex = null,
             string hintq = null,
             string hinta = null,
-            DateTime? birthDate = null) {
+            DateTime? birthDate = null ) {
             Uid = uid;
             Login = login;
             Password = password;

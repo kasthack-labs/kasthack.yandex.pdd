@@ -6,7 +6,7 @@
     public class CheckResponse : ImportResponse {}
 
     public class StartOneResponse : ImportResponse {
-        public Item ImportItem { get; set; }
+        public Item ImportList { get; set; }
     }
 
     public class StartResponse : ImportResponse {
@@ -14,7 +14,7 @@
     }
 
     public class CheckImportResponse : ImportResponse {
-        
+        public Info Import { get; set; }
     }
 
     public class Info {
@@ -28,17 +28,17 @@
         public int ImportedMessageCount { get; set; }
         public int TotalMessageCount { get; set; }
         public int ProgressPercent { get; set; }
-        public ItemStatus FailedBoxes { get; set; }
+        public ItemStatus[] FailedBoxes { get; set; }
     }
-    public class ItemBase
-    {
+
+    public class ItemBase {
         public string ExternalLogin { get; set; }
         public string ExternalPassword { get; set; }
         public string InternalLogin { get; set; }
         public string InternalPassword { get; set; }
     }
 
-    public class Item : ItemBase{
+    public class Item : ItemBase {
         public bool Started { get; set; }
     }
 
@@ -47,11 +47,19 @@
         public string LastError { get; set; }
         public string LastErrorCount { get; set; }
     }
+
     public class Settings {
         public Method Method { get; set; }
         public string Server { get; set; }
         public int Port { get; set; }
         public bool Ssl { get; set; }
+    }
+
+    public class SignleImportSettings : Settings {
+        public string ExternalLogin { get; set; }
+        public string ExternalPassword { get; set; }
+        public string InternalLogin { get; set; }
+        public string InternalPassword { get; set; }
     }
 
     public enum State {
@@ -63,6 +71,7 @@
         Done,
         Removed
     }
+
     public enum Method {
         IMAP,
         IMAP4,
