@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using kasthack.yandex.pdd.Helpers;
+using kasthack.yandex.pdd.RawMethods;
 
 namespace kasthack.yandex.pdd {
     public class PddRawApi {

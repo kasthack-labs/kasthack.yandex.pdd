@@ -20,7 +20,7 @@ namespace kasthack.yandex.pdd.Email {
         public AccountF Account { get; set; }
     }
 
-    public class DelResponse : Response {
+    public class DeleteResponse : Response {
         public string Login { get; set; }
     }
 

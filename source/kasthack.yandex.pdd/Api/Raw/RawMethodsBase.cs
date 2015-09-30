@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.RawMethods {
     public abstract class RawMethodsBase {
         protected internal readonly DomainRawContext Context;
 

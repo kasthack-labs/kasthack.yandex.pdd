@@ -2,17 +2,11 @@
     public abstract class ImportResponse : Response {
         public Settings Settings { get; set; }
     }
-
-    public class CheckResponse : ImportResponse {}
-
+    
     public class StartOneResponse : ImportResponse {
         public Item ImportList { get; set; }
     }
-
-    public class StartResponse : ImportResponse {
-        public Item[] ImportItem { get; set; }
-    }
-
+    
     public class CheckImportResponse : ImportResponse {
         public Info Import { get; set; }
     }
@@ -73,9 +67,9 @@
     }
 
     public enum Method {
-        IMAP,
-        IMAP4,
-        POP,
-        POP3
+        Imap,
+        Imap4,
+        Pop,
+        Pop3
     }
 }

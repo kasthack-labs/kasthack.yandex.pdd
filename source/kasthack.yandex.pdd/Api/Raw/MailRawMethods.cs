@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using kasthack.yandex.pdd.Email;
 using kasthack.yandex.pdd.Helpers;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.RawMethods {
     public class MailRawMethods : RawMethodsBase {
         internal MailRawMethods( DomainRawContext context ) : base( context ) { }
 

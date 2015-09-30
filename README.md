@@ -58,7 +58,7 @@ var unread =
     * StartOneImport
     * CheckImport
     * StopAllImports
-* Maillist[raw]
+* Maillist
     * Add
     * List
     * Delete

@@ -1,4 +1,5 @@
 ﻿using kasthack.yandex.pdd.Helpers;
+using kasthack.yandex.pdd.Methods;
 using Newtonsoft.Json;
 
 namespace kasthack.yandex.pdd {

@@ -4,8 +4,11 @@ using kasthack.yandex.pdd.Email;
 using kasthack.yandex.pdd.Helpers;
 using kasthack.yandex.pdd.MailLists;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.RawMethods {
     public class MailListRawMethods : RawMethodsBase {
+        private const string MaillistUid = "maillist_uid";
+        private const string Subscriber = "subscriber";
+        private const string SubscriberUid = "subscriber_uid";
         internal MailListRawMethods( DomainRawContext context ) : base( context ) { }
 
         public async Task<string> Add( string maillist ) =>
@@ -18,46 +21,46 @@ namespace kasthack.yandex.pdd {
         public async Task<string> Delete( MailListId maillist ) =>
             await Context.ProcessRequestPost( "email/ml/del", new Dictionary<string, string> {
                         { nameof( maillist.Maillist ).ToLowerInvariant(), maillist.Maillist },
-                        { "maillist_uid", maillist.Uid.ToNCString() }
+                        { MaillistUid, maillist.Uid.ToNCString() }
                     } ).ConfigureAwait( false );
 
         public async Task<string> Subscribe( MailListId maillist, AccountId subscriber, bool? canSendOnBehalf ) =>
                 await Context.ProcessRequestPost( "email/ml/subscribe", new Dictionary<string, string> {
                         { nameof( maillist.Maillist ).ToLowerInvariant(), maillist.Maillist },
-                        { "maillist_uid", maillist.Uid.ToNCString() },
-                        { "subscriber", subscriber.Login },
-                        { "subscriber_uid", subscriber.Uid.ToNCString() },
+                        { MaillistUid, maillist.Uid.ToNCString() },
+                        { Subscriber, subscriber.Login },
+                        { SubscriberUid, subscriber.Uid.ToNCString() },
                         { nameof( canSendOnBehalf ).ToSnake(), canSendOnBehalf.ToYesNo() }
                     } ).ConfigureAwait( false );
 
         public async Task<string> Subscribers( MailListId maillist ) =>
             await Context.ProcessRequestGet( "email/ml/subscribers", new Dictionary<string, string> {
                         { nameof( maillist.Maillist ).ToLowerInvariant(), maillist.Maillist },
-                        { "maillist_uid", maillist.Uid.ToNCString() },
+                        { MaillistUid, maillist.Uid.ToNCString() },
                     } ).ConfigureAwait( false );
 
         public async Task<string> Unsubscribe( MailListId maillist, AccountId subscriber ) =>
                 await Context.ProcessRequestPost( "email/ml/unsubscribe", new Dictionary<string, string> {
                         { nameof( maillist.Maillist ).ToLowerInvariant(), maillist.Maillist },
-                        { "maillist_uid", maillist.Uid.ToNCString() },
-                        { "subscriber", subscriber.Login },
-                        { "subscriber_uid", subscriber.Uid.ToNCString() }
+                        { MaillistUid, maillist.Uid.ToNCString() },
+                        { Subscriber, subscriber.Login },
+                        { SubscriberUid, subscriber.Uid.ToNCString() }
                     } ).ConfigureAwait( false );
 
         public async Task<string> GetCanSendOnBehalf( MailListId maillist, AccountId subscriber ) =>
                 await Context.ProcessRequestGet( "email/ml/get_can_send_on_behalf", new Dictionary<string, string> {
                         { nameof( maillist.Maillist ).ToLowerInvariant(), maillist.Maillist },
-                        { "maillist_uid", maillist.Uid.ToNCString() },
-                        { "subscriber", subscriber.Login },
-                        { "subscriber_uid", subscriber.Uid.ToNCString() }
+                        { MaillistUid, maillist.Uid.ToNCString() },
+                        { Subscriber, subscriber.Login },
+                        { SubscriberUid, subscriber.Uid.ToNCString() }
                     } ).ConfigureAwait( false );
 
         public async Task<string> SetCanSendOnBehalf( MailListId maillist, AccountId subscriber, bool canSendOnBehalf ) =>
                 await Context.ProcessRequestPost( "email/ml/set_can_send_on_behalf", new Dictionary<string, string> {
                         { nameof( maillist.Maillist ).ToLowerInvariant(), maillist.Maillist },
-                        { "maillist_uid", maillist.Uid.ToNCString() },
-                        { "subscriber", subscriber.Login },
-                        { "subscriber_uid", subscriber.Uid.ToNCString() },
+                        { MaillistUid, maillist.Uid.ToNCString() },
+                        { Subscriber, subscriber.Login },
+                        { SubscriberUid, subscriber.Uid.ToNCString() },
                         { nameof( canSendOnBehalf ).ToSnake(), canSendOnBehalf.ToYesNo() }
                     } ).ConfigureAwait( false );
     }

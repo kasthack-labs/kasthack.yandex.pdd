@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.RawMethods {
     public class DkimRawMethods : RawMethodsBase {
         internal DkimRawMethods( DomainRawContext context ) : base( context ) { }
 

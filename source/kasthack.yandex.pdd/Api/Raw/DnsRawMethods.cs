@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using kasthack.yandex.pdd.Dns;
 using kasthack.yandex.pdd.Helpers;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.RawMethods {
     public class DnsRawMethods : RawMethodsBase {
         internal DnsRawMethods( DomainRawContext context ) : base( context ) { }
 

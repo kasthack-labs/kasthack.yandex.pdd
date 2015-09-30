@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using kasthack.yandex.pdd.Helpers;
 using kasthack.yandex.pdd.Import;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.RawMethods {
     public class ImportRawMethods : RawMethodsBase {
         internal ImportRawMethods( DomainRawContext context ) : base( context ) { }
 

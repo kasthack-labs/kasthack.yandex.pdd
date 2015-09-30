@@ -1,24 +1,23 @@
 ﻿using System.Threading.Tasks;
 using kasthack.yandex.pdd.Email;
-using kasthack.yandex.pdd.Helpers;
+using kasthack.yandex.pdd.RawMethods;
 
-namespace kasthack.yandex.pdd {
+namespace kasthack.yandex.pdd.Methods {
+
     public class MailMethods : MethodsBase<MailRawMethods> {
+
         internal MailMethods( MailRawMethods parent ) : base( parent ) { }
 
-        public async Task<AddResponse> Add( string login, string password ) =>
-            PddApi.Serializer.Deserialize<AddResponse>( ( await Parent.Add( login, password ).ConfigureAwait( false ) ).ToJSONReader() );
+        public async Task<AddResponse> Add( string login, string password ) => await Process<AddResponse>( Parent.Add( login, password ) ).ConfigureAwait( false );
 
-        public async Task<DelResponse> Delete( AccountId id ) =>
-            PddApi.Serializer.Deserialize<DelResponse>( ( await Parent.Delete( id ).ConfigureAwait( false ) ).ToJSONReader() );
+        public async Task<DeleteResponse> Delete( AccountId id ) => await Process<DeleteResponse>( Parent.Delete( id ) ).ConfigureAwait( false );
 
-        public async Task<CountersResponse> Counters( AccountId id ) =>
-            PddApi.Serializer.Deserialize<CountersResponse>( ( await Parent.Counters( id ).ConfigureAwait( false ) ).ToJSONReader() );
+        public async Task<CountersResponse> Counters( AccountId id ) => await Process<CountersResponse>( Parent.Counters( id ) ).ConfigureAwait( false );
 
-        public async Task<ListResponse> List( int? page = null, int? onPage = null ) =>
-            PddApi.Serializer.Deserialize<ListResponse>( ( await Parent.List( page, onPage ).ConfigureAwait( false ) ).ToJSONReader() );
+        public async Task<ListResponse> List( int? page = null, int? onPage = null ) => await Process<ListResponse>( Parent.List( page, onPage ) ).ConfigureAwait( false );
 
-        public async Task<EditResponse> Edit( AccountBase account ) =>
-            PddApi.Serializer.Deserialize<EditResponse>( ( await Parent.Edit( account ).ConfigureAwait( false ) ).ToJSONReader() );
+        public async Task<EditResponse> Edit( AccountBase account ) => await Process<EditResponse>( Parent.Edit( account ) ).ConfigureAwait( false );
+
     }
+
 }
