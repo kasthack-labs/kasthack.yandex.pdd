@@ -24,4 +24,12 @@ namespace kasthack.yandex.pdd.Methods {
 
     }
 
+    public class DomainsMethods : MethodsBase<DomainsRawMethods> {
+
+        internal DomainsMethods( DomainsRawMethods parent ) : base( parent ) { }
+
+        public async Task<DomainsResponse> GetDomains( int? page, int? onPage ) => await Process<DomainsResponse>( Parent.GetDomains( page, onPage ) ).ConfigureAwait( false );
+
+    }
+
 }

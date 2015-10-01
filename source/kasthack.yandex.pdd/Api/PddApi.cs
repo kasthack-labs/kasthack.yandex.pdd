@@ -1,11 +1,15 @@
-﻿using kasthack.yandex.pdd.Helpers;
+﻿using System.Threading.Tasks;
+using kasthack.yandex.pdd.Domain;
+using kasthack.yandex.pdd.Helpers;
 using kasthack.yandex.pdd.Methods;
+using kasthack.yandex.pdd.RawMethods;
 using Newtonsoft.Json;
 
 namespace kasthack.yandex.pdd {
     public class PddApi {
         internal static readonly JsonSerializer Serializer = SerializerFactory.GetSerializer();
         internal readonly PddRawApi Raw;
+        private readonly DomainsMethods DomainsMethods;
 
         public string PddToken {
             get { return Raw.PddToken; }
@@ -23,19 +27,28 @@ namespace kasthack.yandex.pdd {
             Raw = new PddRawApi();
             if ( pddtoken != null ) PddToken = pddtoken;
             if ( authtoken != null ) AuthToken = authtoken;
+            DomainsMethods = new DomainsMethods(new DomainsRawMethods(new DomainRawContext( Raw, null )));
         }
 
         public DomainContext Domain( string domain ) => new DomainContext( this, domain );
+
+        public async Task<DomainsResponse> GetDomains(int? page, int? onPage) => await DomainsMethods.GetDomains(page, onPage).ConfigureAwait(false);
     }
 
-    public class DomainContext {
-        private readonly PddApi _api;
-        private readonly string _domain;
+    public class DomainContextBase {
 
-        internal DomainContext( PddApi api, string domain ) {
-            _api = api;
-            _domain = domain;
-            var rawContext = _api.Raw.Domain( _domain );
+        protected internal readonly PddApi Api;
+        protected internal readonly string DomainName;
+
+        internal DomainContextBase( PddApi api, string domain ) {
+            Api = api;
+            DomainName = domain;
+        }
+    }
+
+    public class DomainContext : DomainContextBase {
+        internal DomainContext( PddApi api, string domain ) : base(api, domain) {
+            var rawContext = Api.Raw.Domain(DomainName);
             Deputy = new DeputyMethods( rawContext.Deputy );
             Dns = new DnsMethods( rawContext.Dns );
             Dkim = new DkimMethods( rawContext.Dkim );

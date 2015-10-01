@@ -45,13 +45,33 @@ namespace kasthack.yandex.pdd {
         private static Uri BuildMethodUri( string method ) { return new Uri( new Uri( BuiltInData.Instance.ApiDomain ), method ); }
     }
 
-    public class DomainRawContext {
-        private readonly PddRawApi _api;
-        private readonly string _domain;
+    public class DomainRawContextBase {
 
-        internal DomainRawContext( PddRawApi api, string domain ) {
-            _api = api;
-            _domain = domain;
+        protected internal readonly PddRawApi Api;
+        protected internal readonly string DomainName;
+
+        internal DomainRawContextBase( PddRawApi api, string domain ) {
+            Api = api;
+            DomainName = domain;
+        }
+        private IEnumerable<KeyValuePair<string, string>> PrepareParams(IEnumerable<KeyValuePair<string, string>> parameters) {
+            var ret = new List<KeyValuePair<string, string>>();
+            if (DomainName != null) ret.Add(new KeyValuePair<string, string>("domain", DomainName));
+            ret.AddRange(parameters.Where(a => a.Key != null && a.Value != null));
+            return ret;
+        }
+
+        internal async Task<string> ProcessRequestPost(string method, IEnumerable<KeyValuePair<string, string>> parameters) =>
+            await Api.ProcessRequestPost(method, PrepareParams(parameters));
+
+        internal async Task<string> ProcessRequestGet(string method, IEnumerable<KeyValuePair<string, string>> parameters) =>
+            await Api.ProcessRequestGet(method, PrepareParams(parameters));
+    }
+
+    public class DomainRawContext : DomainRawContextBase
+    {
+
+        internal DomainRawContext( PddRawApi api, string domain ) : base( api, domain) {
             Deputy = new DeputyRawMethods( this );
             Dns = new DnsRawMethods( this );
             Dkim = new DkimRawMethods( this );
@@ -68,18 +88,5 @@ namespace kasthack.yandex.pdd {
         public ImportRawMethods Import { get; }
         public MailListRawMethods MailList { get; }
         public MailRawMethods Mail { get; }
-
-        private IEnumerable<KeyValuePair<string, string>> PrepareParams( IEnumerable<KeyValuePair<string, string>> parameters ) {
-            var ret = new List<KeyValuePair<string, string>>();
-            if ( _domain != null ) ret.Add( new KeyValuePair<string, string>( "domain", _domain ) );
-            ret.AddRange( parameters.Where( a => a.Key != null && a.Value != null ) );
-            return ret;
-        }
-
-        internal async Task<string> ProcessRequestPost( string method, IEnumerable<KeyValuePair<string, string>> parameters ) =>
-            await _api.ProcessRequestPost( method, PrepareParams( parameters ) );
-
-        internal async Task<string> ProcessRequestGet( string method, IEnumerable<KeyValuePair<string, string>> parameters ) =>
-            await _api.ProcessRequestGet( method, PrepareParams( parameters ) );
     }
 }
