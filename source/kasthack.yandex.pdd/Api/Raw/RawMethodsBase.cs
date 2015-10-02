@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace kasthack.yandex.pdd.RawMethods {
     public abstract class RawMethodsBase {
-        protected internal readonly DomainRawContext Context;
+        protected internal readonly DomainRawContextBase Context;
 
         protected internal IEnumerable<KeyValuePair<string, string>> EmptyParams => Enumerable.Empty<KeyValuePair<string, string>>();
 
-        internal RawMethodsBase( DomainRawContext context ) { Context = context; }
+        internal RawMethodsBase( DomainRawContextBase context ) { Context = context; }
     }
 }

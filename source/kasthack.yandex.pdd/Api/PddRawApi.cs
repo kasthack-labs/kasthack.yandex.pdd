@@ -11,10 +11,14 @@ using kasthack.yandex.pdd.RawMethods;
 namespace kasthack.yandex.pdd {
     public class PddRawApi {
         private static readonly HttpClient Client;
+        internal readonly DomainsRawMethods DomainMethods;
         public string PddToken { get; set; }
         public YaToken AuthToken { get; set; }
         public DomainRawContext Domain( string domain ) => new DomainRawContext( this, domain );
         static PddRawApi() { Client = new HttpClient { }; }
+        public PddRawApi() {
+            DomainMethods = new DomainsRawMethods( new DomainRawContext( this, null ) );
+        }
 
         private void UpdateHeaders( HttpRequestHeaders headers ) {
             headers.Add( "PddToken", PddToken );
@@ -42,6 +46,7 @@ namespace kasthack.yandex.pdd {
             return await ( await Client.SendAsync( message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
         }
 
+        public async Task<string> GetDomains( int? page = null, int? onPage = null ) => await DomainMethods.GetDomains( page, onPage ).ConfigureAwait( false );
         private static Uri BuildMethodUri( string method ) { return new Uri( new Uri( BuiltInData.Instance.ApiDomain ), method ); }
     }
 

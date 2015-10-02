@@ -7,9 +7,14 @@ namespace kasthack.yandex.pdd.Email {
         Female = 2
     }
 
-    public class AddResponse : Response {
+    public class UidResponse : Response {
         public string Login { get; set; }
         public long Uid { get; set; }
+    }
+
+    public class AddResponse : UidResponse
+    {
+        
     }
 
     public class ListResponse : PageableResponse {
@@ -24,7 +29,7 @@ namespace kasthack.yandex.pdd.Email {
         public string Login { get; set; }
     }
 
-    public class CountersResponse : Response {
+    public class CountersResponse : UidResponse {
         public Counters Counters { get; set; }
     }
 

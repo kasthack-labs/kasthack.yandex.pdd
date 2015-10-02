@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using kasthack.yandex.pdd.Helpers;
 
 namespace kasthack.yandex.pdd.Methods {
@@ -9,8 +10,13 @@ namespace kasthack.yandex.pdd.Methods {
 
         internal MethodsBase( T parent ) { Parent = parent; }
 
-        protected internal async Task<TRequest> Process<TRequest>( Task<string> task ) => PddApi.Serializer.Deserialize<TRequest>( ( await task.ConfigureAwait( false ) ).ToJSONReader() );
-
+        protected internal async Task<TRequest> Process<TRequest>( Task<string> task ) where TRequest : Response {
+            var ret = PddApi.Serializer.Deserialize<TRequest>( ( await task.ConfigureAwait( false ) ).ToJSONReader() );
+            if ( !ret.Success ) {
+                throw new Exception($"Requested for {ret.Domain} failed: {ret.Error}");
+            }
+            return ret;
+        }
     }
 
 }
