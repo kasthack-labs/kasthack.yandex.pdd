@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>kasthack.yandex.pdd</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://www.gnu.org/copyleft/lesser.html</licenseUrl>
+    <projectUrl>https://github.com/kasthack/kasthack.yandex.pdd</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright kasthack 2015</copyright>
+    <tags>yandex pdd яндекс пдд api kasthack</tags>
+  </metadata>
+</package>

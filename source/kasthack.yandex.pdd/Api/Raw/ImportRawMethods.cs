@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using kasthack.yandex.pdd.Helpers;
 using kasthack.yandex.pdd.Import;
@@ -36,5 +38,19 @@ namespace kasthack.yandex.pdd.RawMethods {
 
         public async Task<string> StopAllImports()
             => await Context.ProcessRequestPost( "import/stop_all_imports", EmptyParams ).ConfigureAwait( false );
+
+        public async Task<string> StartImportFile( Settings settings, string filename ) {
+            using ( var file = File.OpenRead( filename ) )
+                return await StartImportFile( settings, file ).ConfigureAwait( false );
+        }
+        public async Task<string> StartImportFile(Settings settings, Stream file) =>
+            await Context.ProcessRequestPostForm("import/start_import_file", new MultipartFormDataContent {
+                MiscTools.StringContent( nameof( settings.Method ).ToLowerInvariant(), settings.Method.ToNCString() ),
+                MiscTools.StringContent( nameof( settings.Port ).ToLowerInvariant(), settings.Port.ToNCString() ),
+                MiscTools.StringContent( nameof( settings.Ssl ).ToLowerInvariant(), settings.Ssl.ToYesNo() ),
+                MiscTools.StringContent( nameof( settings.Server ).ToLowerInvariant(), settings.Server ),
+                MiscTools.StreamContent( nameof(file), file )
+            });
+
     }
 }

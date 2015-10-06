@@ -3,8 +3,8 @@
         public Settings Settings { get; set; }
     }
     
-    public class StartOneResponse : ImportResponse {
-        public Item ImportList { get; set; }
+    public class StartResponse : ImportResponse {
+        public Item[] ImportList { get; set; }
     }
     
     public class CheckImportResponse : ImportResponse {

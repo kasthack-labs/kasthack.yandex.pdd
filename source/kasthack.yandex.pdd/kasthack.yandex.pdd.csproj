@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="kasthack.yandex.pdd.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

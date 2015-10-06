@@ -1,4 +1,8 @@
 # Yandex PDD API for .NET
+## Installation
+```powershell
+Install-Package kasthack.yandex.pdd
+```
 ## Docs
 ### API Description by yandex
 https://tech.yandex.ru/pdd/doc/about-docpage/
@@ -54,6 +58,7 @@ var unread =
     * SetCountry
     * GetLogo
     * DeleteLogo
+    * SetLogo
 * Import
     * CheckSettings
     * StartOneImport
@@ -68,15 +73,10 @@ var unread =
     * Unsubscribe
     * GetCanSendOnBehalf
     * SetCanSendOnBehalf
-
-### Missing
+    * Import file
+* Domains
+    * List
 * Deputy
     * Add
     * List
     * Delete
-* Maillist
-    * Import file
-* Domain
-    * SetLogo
-* Domains
-    * List

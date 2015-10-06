@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using kasthack.yandex.pdd.Domain;
 using kasthack.yandex.pdd.RawMethods;
 
@@ -21,6 +22,10 @@ namespace kasthack.yandex.pdd.Methods {
         public async Task<LogoCheckResponse> GetLogo() => await Process<LogoCheckResponse>( Parent.GetLogo() ).ConfigureAwait( false );
 
         public async Task<Response> DeleteLogo() => await Process<Response>( Parent.DeleteLogo() ).ConfigureAwait( false );
+
+        public async Task<Response> SetLogo( string file ) => await Process<Response>( Parent.SetLogo( file ) ).ConfigureAwait( false );
+
+        public async Task<Response> SetLogo( Stream source, string filename ) => await Process<Response>( Parent.SetLogo( source, filename ) ).ConfigureAwait( false );
 
     }
 

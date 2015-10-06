@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -59,5 +61,10 @@ namespace kasthack.yandex.pdd.Helpers {
         public static string ToYesNo( this bool value ) => value ? "yes" : "no";
         public static string ToYesNo( this bool? value ) => value?.ToYesNo();
         public static JsonReader ToJSONReader( this string source ) => new JsonTextReader( new StringReader( source ) );
+
+        public static StringContent StringContent( string name, string value ) => new StringContent(value) { Headers = { ContentDisposition = { Name = name } } };
+
+        public static StreamContent StreamContent( string name, Stream value ) => new StreamContent( value ) { Headers = { ContentDisposition = new ContentDispositionHeaderValue( "form-data" ) { FileName = name } } };
+
     } //
 }

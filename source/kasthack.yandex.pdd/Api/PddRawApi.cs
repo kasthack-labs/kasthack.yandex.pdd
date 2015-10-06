@@ -28,7 +28,7 @@ namespace kasthack.yandex.pdd {
                 RequestUri = BuildMethodUri( method ),
             };
             UpdateHeaders( message.Headers );
-            return await ( await Client.SendAsync( message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
+            return await GetResponse( message ).ConfigureAwait( false );
         }
 
         internal async Task<string> ProcessRequestGet( string method, IEnumerable<KeyValuePair<string, string>> parameters ) {
@@ -39,9 +39,20 @@ namespace kasthack.yandex.pdd {
                 RequestUri = new UriBuilder( BuildMethodUri( method ) ) { Query = ps.ToString() }.Uri,
             };
             UpdateHeaders( message.Headers );
-            return await ( await Client.SendAsync( message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
+            return await GetResponse(message).ConfigureAwait(false);
         }
 
+        internal async Task<string> ProcessRequestPostForm(string method, MultipartFormDataContent parameters) {
+            var message = new HttpRequestMessage {
+                Method = HttpMethod.Post,
+                Content = parameters,
+                RequestUri = BuildMethodUri(method),
+            };
+            UpdateHeaders(message.Headers);
+            return await GetResponse(message).ConfigureAwait(false);
+        }
+
+        private async Task<string> GetResponse( HttpRequestMessage message ) => await ( await Client.SendAsync( message ).ConfigureAwait( false ) ).Content.ReadAsStringAsync().ConfigureAwait( false );
         private static Uri BuildMethodUri( string method ) { return new Uri( new Uri( BuiltInData.Instance.ApiDomain ), method ); }
     }
 
@@ -60,12 +71,23 @@ namespace kasthack.yandex.pdd {
             ret.AddRange(parameters.Where(a => a.Key != null && a.Value != null));
             return ret;
         }
-
+        
         internal async Task<string> ProcessRequestPost(string method, IEnumerable<KeyValuePair<string, string>> parameters) =>
             await Api.ProcessRequestPost(method, PrepareParams(parameters));
 
         internal async Task<string> ProcessRequestGet(string method, IEnumerable<KeyValuePair<string, string>> parameters) =>
             await Api.ProcessRequestGet(method, PrepareParams(parameters));
+
+        internal async Task<string> ProcessRequestPostForm( string method, MultipartFormDataContent parameters )
+            => await Api.ProcessRequestPostForm( method, PrepareForm( parameters ) );
+
+        private MultipartFormDataContent PrepareForm( MultipartFormDataContent parameters ) {
+            var ret = new MultipartFormDataContent();
+            foreach ( var parameter in parameters ) ret.Add( parameter );
+            ret.Add( MiscTools.StringContent( "domain", DomainName ) );
+            return ret;
+        }
+
     }
 
     public class DomainRawContext : DomainRawContextBase

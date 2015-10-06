@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle( "kasthack.yandex.pdd" )]
-[assembly: AssemblyDescription( "" )]
+[assembly: AssemblyDescription("kasthack.yandex.pdd")]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "" )]
+[assembly: AssemblyCompany("kasthack")]
 [assembly: AssemblyProduct( "kasthack.yandex.pdd" )]
-[assembly: AssemblyCopyright( "Copyright ©  2015" )]
-[assembly: AssemblyTrademark( "" )]
+[assembly: AssemblyCopyright("Copyright kasthack ©  2015")]
+[assembly: AssemblyTrademark("kasthack")]
 [assembly: AssemblyCulture( "" )]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
