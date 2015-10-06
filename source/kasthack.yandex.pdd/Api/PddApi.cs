@@ -2,7 +2,6 @@
 using kasthack.yandex.pdd.Domain;
 using kasthack.yandex.pdd.Helpers;
 using kasthack.yandex.pdd.Methods;
-using kasthack.yandex.pdd.RawMethods;
 using Newtonsoft.Json;
 
 namespace kasthack.yandex.pdd {
@@ -27,12 +26,12 @@ namespace kasthack.yandex.pdd {
             Raw = new PddRawApi();
             if ( pddtoken != null ) PddToken = pddtoken;
             if ( authtoken != null ) AuthToken = authtoken;
-            DomainsMethods = new DomainsMethods(new DomainsRawMethods(new DomainRawContext( Raw, null )));
+            DomainsMethods = new DomainsMethods( Raw.DomainMethods );
         }
 
         public DomainContext Domain( string domain ) => new DomainContext( this, domain );
 
-        public async Task<DomainsResponse> GetDomains(int? page, int? onPage) => await DomainsMethods.GetDomains(page, onPage).ConfigureAwait(false);
+        public async Task<DomainsResponse> GetDomains(int? page=null, int? onPage=null) => await DomainsMethods.GetDomains(page, onPage).ConfigureAwait(false);
     }
 
     public class DomainContextBase {

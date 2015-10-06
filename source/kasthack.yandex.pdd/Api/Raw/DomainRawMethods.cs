@@ -42,7 +42,7 @@ namespace kasthack.yandex.pdd.RawMethods {
 
         internal DomainsRawMethods( DomainRawContext context ) : base( context ) { }
 
-        public async Task<string> GetDomains( int? page, int? onPage ) => await Context.ProcessRequestGet("domain/logo/check", new Dictionary<string, string>() {
+        public async Task<string> GetDomains( int? page, int? onPage ) => await Context.ProcessRequestGet("domain/domains", new Dictionary<string, string> {
             {nameof(page), page.ToNCString()},
             { nameof( onPage ).ToSnake(), onPage.ToNCString()}
         }).ConfigureAwait(false);

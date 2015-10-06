@@ -19,7 +19,7 @@
 
     public class AddResponse : MaillistUidResponse {}
 
-    public class ListResponse {
+    public class ListResponse : Response {
         public MailList[] Maillists { get; set; }
     }
 

@@ -2,7 +2,7 @@
 
 namespace kasthack.yandex.pdd {
 
-    public abstract class Response {
+    public class Response {
         public string Domain { get; set; }
         public bool Success { get; set; }
         public ErrorCode Error { get; set; }
@@ -19,7 +19,8 @@ namespace kasthack.yandex.pdd {
         Blocked,
         Occupied,
         DomainLimitReached,
-        NoReply
+        NoReply,
+        BadUid
     }
 
     public abstract class PageableResponse : Response {
