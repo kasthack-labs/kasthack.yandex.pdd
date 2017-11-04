@@ -1,4 +1,9 @@
 # Yandex PDD API for .NET
+
+[![Nuget](https://img.shields.io/nuget/v/kasthack.yandex.pdd.svg)](https://www.nuget.org/packages/kasthack.yandex.pdd/)
+[![NuGet](https://img.shields.io/nuget/dt/kasthack.yandex.pdd.svg)](https://www.nuget.org/packages/kasthack.yandex.pdd/)
+![License](https://img.shields.io/badge/license-LGPL-green.svg)
+
 ## Installation
 ```powershell
 Install-Package kasthack.yandex.pdd
@@ -34,49 +39,48 @@ var unread =
     .Unread;
 ```
 ## API coverage
-### Implemented
 * Mail
-    * Add
-    * Del
-    * List
-    * Edit
-    * Counters
+    - [X] Add
+    - [X] Del
+    - [X] List
+    - [X] Edit
+    - [X] Counters
 * DKIM
-    * Status
-    * Enable
-    * Disable
+    - [X] Status
+    - [X] Enable
+    - [X] Disable
 * DNS
-    * Add
-    * List
-    * Edit
-    * Delete
+    - [X] Add
+    - [X] List
+    - [X] Edit
+    - [X] Delete
 * Domain
-    * Register
-    * RegistrationStatus
-    * Details
-    * Delete
-    * SetCountry
-    * GetLogo
-    * DeleteLogo
-    * SetLogo
+    - [X] Register
+    - [X] RegistrationStatus
+    - [X] Details
+    - [X] Delete
+    - [X] SetCountry
+    - [X] GetLogo
+    - [X] DeleteLogo
+    - [X] SetLogo
 * Import
-    * CheckSettings
-    * StartOneImport
-    * CheckImport
-    * StopAllImports
+    - [X] CheckSettings
+    - [X] StartOneImport
+    - [X] CheckImport
+    - [X] StopAllImports
 * Maillist
-    * Add
-    * List
-    * Delete
-    * Subscribe
-    * Subscribers
-    * Unsubscribe
-    * GetCanSendOnBehalf
-    * SetCanSendOnBehalf
-    * Import file
+    - [X] Add
+    - [X] List
+    - [X] Delete
+    - [X] Subscribe
+    - [X] Subscribers
+    - [X] Unsubscribe
+    - [X] GetCanSendOnBehalf
+    - [X] SetCanSendOnBehalf
+    - [X] Import file
 * Domains
-    * List
+    - [X] List
 * Deputy
-    * Add
-    * List
-    * Delete
+    - [X] Add
+    - [X] List
+    - [X] Delete
