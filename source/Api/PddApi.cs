@@ -12,6 +12,11 @@ namespace kasthack.yandex.pdd
         internal readonly PddRawApi Raw;
         private readonly DomainsMethods DomainsMethods;
 
+        public ApiMode Mode
+        {
+            get => Raw.Mode;
+            set => Raw.Mode= value;
+        }
         public string PddToken {
             get => Raw.PddToken;
             set => Raw.PddToken = value;
@@ -24,11 +29,12 @@ namespace kasthack.yandex.pdd
 
         public PddApi() : this(null, null) { }
 
-        public PddApi(string pddtoken = null, YaToken authtoken = null)
+        public PddApi(string pddtoken, YaToken authtoken = null)
         {
             Raw = new PddRawApi();
-            if (pddtoken != null) PddToken = pddtoken;
+            PddToken = pddtoken;
             if (authtoken != null) AuthToken = authtoken;
+            Mode = authtoken == null ? ApiMode.Admin : ApiMode.Registar;
             DomainsMethods = new DomainsMethods(Raw.DomainMethods);
         }
 

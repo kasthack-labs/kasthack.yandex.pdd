@@ -1,6 +1,6 @@
 ﻿namespace kasthack.yandex.pdd.Entities
 {
-    public class SignleImportSettings : ImportSettings
+    public class SingleImportSettings : ImportSettings
     {
         public string ExternalLogin { get; set; }
         public string ExternalPassword { get; set; }

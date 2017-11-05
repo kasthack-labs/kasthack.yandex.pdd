@@ -19,7 +19,7 @@ namespace kasthack.yandex.pdd.RawMethods
                         { nameof( settings.Server ).ToLowerInvariant(), settings.Server },
                     }).ConfigureAwait(false);
 
-        public async Task<string> StartOneImport(SignleImportSettings settings) =>
+        public async Task<string> StartOneImport(SingleImportSettings settings) =>
                 await Context.ProcessRequestPost("import/start_one_import",
                     new Dictionary<string, string> {
                         { nameof( settings.Method ).ToLowerInvariant(), settings.Method.ToNCString() },

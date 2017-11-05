@@ -2,6 +2,5 @@
 {
     public class UnsubscribeMailListResponse : SubscriberResponse
     {
-        public long Uid { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace kasthack.yandex.pdd.Methods
         public async Task<SubscribersMailListResponse> Subscribers(MailListId maillist) => await Process<SubscribersMailListResponse>(Parent.Subscribers(maillist)).ConfigureAwait(false);
 
         public async Task<UnsubscribeMailListResponse> Unsubscribe(MailListId maillist, EmailAccountId subscriber) => await Process<UnsubscribeMailListResponse>(Parent.Unsubscribe(maillist, subscriber)).ConfigureAwait(false);
-
+        public async Task<GetCanSendToMailListResponse> GetCanSendToMailList(MailListId mailList, EmailAccountId subscriber) => await Process<GetCanSendToMailListResponse>(Parent.GetCanSendOnBehalf(mailList, subscriber)).ConfigureAwait(false);
+        public async Task<SetCanSendToMailListResponse> SetCanSendToMailList(MailListId mailList, EmailAccountId subscriber, bool canSendOnBehalf) => await Process<SetCanSendToMailListResponse>(Parent.SetCanSendOnBehalf(mailList, subscriber, canSendOnBehalf)).ConfigureAwait(false);
     }
-
 }

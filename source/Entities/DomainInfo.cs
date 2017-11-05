@@ -6,11 +6,11 @@ namespace kasthack.yandex.pdd.Entities
     {
         public string Name { get; set; }
         public DomainStatus Status { get; set; }
-        public string Stage { get; set; }
+        public RegistrationStage Stage { get; set; }
         public string[] Aliases { get; set; }
         public bool LogoEnabled { get; set; }
         public string LogoUrl { get; set; }
-        public bool NsDelegated { get; set; }
+        public bool Nsdelegated { get; set; }
         public bool MasterAdmin { get; set; }
 
         [JsonProperty("dkim-ready")]

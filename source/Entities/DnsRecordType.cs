@@ -1,5 +1,9 @@
-﻿namespace kasthack.yandex.pdd.Entities
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace kasthack.yandex.pdd.Entities
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum DnsRecordType
     {
         SRV,

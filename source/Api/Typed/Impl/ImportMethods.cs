@@ -12,7 +12,7 @@ namespace kasthack.yandex.pdd.Methods
 
         public async Task<ImportResponse> CheckSettings(ImportSettings settings) => await Process<ImportResponse>(Parent.CheckSettings(settings)).ConfigureAwait(false);
 
-        public async Task<StartImportResponse> StartOneImport(SignleImportSettings settings) => await Process<StartImportResponse>(Parent.StartOneImport(settings)).ConfigureAwait(false);
+        public async Task<StartImportResponse> StartOneImport(SingleImportSettings settings) => await Process<StartImportResponse>(Parent.StartOneImport(settings)).ConfigureAwait(false);
 
         public async Task<CheckImportResponse> CheckImport(int? page = null, int? onPage = null) => await Process<CheckImportResponse>(Parent.CheckImport(page, onPage)).ConfigureAwait(false);
 

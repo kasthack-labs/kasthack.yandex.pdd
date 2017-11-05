@@ -15,13 +15,20 @@ namespace kasthack.yandex.pdd
         internal readonly DomainsMethods DomainMethods;
         public string PddToken { get; set; }
         public YaToken AuthToken { get; set; }
+        public ApiMode Mode { get; set; }
         public IDomainRawContext Domain(string domain) => new DomainRawContext(this, domain);
         static PddRawApi() => Client = new HttpClient { };
         public PddRawApi() => DomainMethods = new DomainsMethods(new DomainRawContext(this, null));
         private void UpdateHeaders(HttpRequestHeaders headers)
         {
             headers.Add("PddToken", PddToken);
-            headers.Authorization = AuthenticationHeaderValue.Parse($"OAuth {AuthToken.Token}");
+            if (Mode == ApiMode.Registar)
+            {
+                if (AuthToken == null) {
+                    throw new InvalidOperationException($"You have to set {nameof(AuthToken)} to make call as a registar");
+                }
+                headers.Authorization = AuthenticationHeaderValue.Parse($"OAuth {AuthToken.Token}");
+            }
         }
 
         internal async Task<string> ProcessRequestPost(string method, IEnumerable<KeyValuePair<string, string>> parameters)
@@ -63,8 +70,6 @@ namespace kasthack.yandex.pdd
         }
         public async Task<string> GetDomains(int? page = null, int? onPage = null) => await DomainMethods.GetDomains(page, onPage).ConfigureAwait(false);
         private async Task<string> GetResponse(HttpRequestMessage message) => await (await Client.SendAsync(message).ConfigureAwait(false)).Content.ReadAsStringAsync().ConfigureAwait(false);
-        private static Uri BuildMethodUri(string method) => new Uri(new Uri(BuiltInData.Instance.ApiDomain), method);
+        private Uri BuildMethodUri(string method) => new Uri(new Uri($"{BuiltInData.Instance.ApiDomain}{Mode.ToString().ToLowerInvariant()}/"), method);
     }
-
-
 }

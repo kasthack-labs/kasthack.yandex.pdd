@@ -10,7 +10,7 @@ namespace kasthack.yandex.pdd.Methods
         Task<ImportResponse> CheckSettings(ImportSettings settings);
         Task<ImportResponse> StartImportFile(ImportSettings settings, Stream file);
         Task<ImportResponse> StartImportFile(ImportSettings settings, string filename);
-        Task<StartImportResponse> StartOneImport(SignleImportSettings settings);
+        Task<StartImportResponse> StartOneImport(SingleImportSettings settings);
         Task<Response> StopAllImports();
     }
 }

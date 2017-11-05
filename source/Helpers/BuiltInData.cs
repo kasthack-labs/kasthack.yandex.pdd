@@ -21,7 +21,7 @@ namespace kasthack.yandex.pdd.Helpers {
         public CultureInfo NC { get; } = CultureInfo.InvariantCulture;
 
         private BuiltInData() {
-            ApiDomain = "https://pddimp.yandex.ru/api2/admin/";
+            ApiDomain = "https://pddimp.yandex.ru/api2/";
             OAuthTokenUri = "https://oauth.yandex.ru/authorize?response_type=token&client_id={0}";
         }
     }

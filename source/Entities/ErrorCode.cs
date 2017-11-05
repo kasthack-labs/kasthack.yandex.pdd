@@ -13,6 +13,10 @@
         Occupied,
         DomainLimitReached,
         NoReply,
-        BadUid
+        BadUid,
+        BadLogin,
+        BadPasswd,
+        NoDimain,
+        NoIp
     }
 }

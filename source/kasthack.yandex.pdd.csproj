@@ -14,7 +14,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageCopyright>Copyright kasthack 2017</PackageCopyright>
         <Version>1.2.0</Version>
-        <Copyright>Copyright kasthack ©  2017</Copyright>
+        <Copyright>Copyright kasthack © 2015-2017</Copyright>
         <Authors>kasthack</Authors>
         <Company>kasthack</Company>
         <RepositoryType>git</RepositoryType>

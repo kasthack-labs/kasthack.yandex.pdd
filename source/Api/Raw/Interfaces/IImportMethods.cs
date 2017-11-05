@@ -10,7 +10,7 @@ namespace kasthack.yandex.pdd.RawMethods
         Task<string> CheckSettings(ImportSettings settings);
         Task<string> StartImportFile(ImportSettings settings, Stream file);
         Task<string> StartImportFile(ImportSettings settings, string filename);
-        Task<string> StartOneImport(SignleImportSettings settings);
+        Task<string> StartOneImport(SingleImportSettings settings);
         Task<string> StopAllImports();
     }
 }

@@ -7,6 +7,6 @@ namespace kasthack.yandex.pdd.Methods
     {
         Task<Response> Add(string login);
         Task<Response> Delete(string login);
-        Task<Response> List();
+        Task<ListDeputiesResponse> List();
     }
 }
