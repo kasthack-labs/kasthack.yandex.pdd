@@ -1,5 +1,8 @@
 version: 1.0.{build}
 image: Previous Visual Studio 2017
+environment:
+  nuget_apikey:
+    secure: I4D2if8a4z4v+GbcoydJ4T2U2H5ymglpv6kpQjSQ2qxPKj73ZFjOxR+N77y3urLy
 before_build:
 - ps: >-
     cd source
@@ -9,7 +12,10 @@ build:
   project: source/kasthack.yandex.pdd.csproj
   publish_nuget: true
   verbosity: minimal
-deploy:
-- provider: NuGet
-  api_key:
-    secure: I4D2if8a4z4v+GbcoydJ4T2U2H5ymglpv6kpQjSQ2qxPKj73ZFjOxR+N77y3urLy
+deploy_script:
+- ps: >-
+    appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+    .\nuget.exe setApiKey $env:nuget_apikey -source https://www.nuget.org | out-null
+
+    ($artifacts.values | Where-Object { $_.path -like '*.nupkg' }) | foreach-object {nuget.exe push $_.path -Source https://www.nuget.org/api/v2/package}
