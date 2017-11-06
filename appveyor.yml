@@ -3,13 +3,12 @@ image: Previous Visual Studio 2017
 environment:
   nuget_apikey:
     secure: I4D2if8a4z4v+GbcoydJ4T2U2H5ymglpv6kpQjSQ2qxPKj73ZFjOxR+N77y3urLy
-before_build:
-- ps: >-
-    cd source
-
-    dotnet restore
+#before_build:
+#- ps: >-
+    #cd source/kasthack.yandex.pdd
+    #dotnet restore
 build:
-  project: source/kasthack.yandex.pdd.csproj
+  #project: source/kasthack.yandex.pdd.csproj
   publish_nuget: true
   verbosity: minimal
 deploy_script:
