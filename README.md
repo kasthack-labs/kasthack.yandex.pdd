@@ -3,7 +3,7 @@
 [![Nuget](https://img.shields.io/nuget/v/kasthack.yandex.pdd.svg)](https://www.nuget.org/packages/kasthack.yandex.pdd/)
 [![NuGet](https://img.shields.io/nuget/dt/kasthack.yandex.pdd.svg)](https://www.nuget.org/packages/kasthack.yandex.pdd/)
 [![Build status](https://img.shields.io/appveyor/ci/kasthack/kasthack-yandex-pdd.svg)](https://ci.appveyor.com/project/kasthack/kasthack-yandex-pdd)
-![License](https://img.shields.io/badge/license-LGPL-green.svg)
+[![license](https://img.shields.io/github/license/kasthack/kasthack.yandex.pdd.svg)](LICENSE)
 [![Join the chat at https://gitter.im/kasthack-yandex-pdd/Lobby](https://img.shields.io/gitter/room/kasthack-yandex-pdd/Lobby.svg)](https://gitter.im/kasthack-yandex-pdd/Lobby)
 
 ## Installation
