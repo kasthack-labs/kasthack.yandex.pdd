@@ -37,7 +37,7 @@ namespace kasthack.yandex.pdd.Helpers
                     if ( value == "yes"
                          || value == "ok" ) return true;
                     if ( value == "no"
-                         || value == "error" ) return true;
+                         || value == "error" ) return false;
                     break;
                 }
                 case JTokenType.Null:
