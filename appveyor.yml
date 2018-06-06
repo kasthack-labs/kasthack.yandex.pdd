@@ -1,7 +1,7 @@
 version: 1.2.{build}
 image: Visual Studio 2017
 before_build:
-- ps: dotnet restore source/kasthack.yandex.pdd
+- ps: dotnet restore src
 configuration:
   - Debug
   - Release
