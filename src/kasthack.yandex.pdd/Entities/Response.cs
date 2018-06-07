@@ -1,10 +1,13 @@
 ﻿namespace kasthack.yandex.pdd.Entities
 {
-
-    public class Response
+    /// <summary>
+    /// Basic api response
+    /// </summary>
+    public class Response : ResponseBase
     {
+        ///<summary>
+        ///Domain name
+        ///</summary>
         public string Domain { get; set; }
-        public bool Success { get; set; }
-        public ErrorCode Error { get; set; }
     }
 }

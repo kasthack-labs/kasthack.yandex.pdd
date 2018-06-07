@@ -13,12 +13,12 @@ namespace kasthack.yandex.pdd.Methods
 
         internal MethodsBase(T parent) => Parent = parent;
 
-        protected internal async Task<TRequest> Process<TRequest>(Task<string> task) where TRequest : Response
+        protected internal async Task<TRequest> Process<TRequest>(Task<string> task) where TRequest : ResponseBase
         {
             var ret = PddApi.Serializer.Deserialize<TRequest>((await task.ConfigureAwait(false)).ToJSONReader());
             if (!ret.Success)
             {
-                throw new Exception($"Requested for {ret.Domain} failed: {ret.Error}");
+                throw new Exception($"Requested failed: {ret.Error}");
             }
             return ret;
         }

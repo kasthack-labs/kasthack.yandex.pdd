@@ -9,7 +9,7 @@ namespace kasthack.yandex.pdd
     /// <summary>
     /// PDD typed API
     /// </summary>
-    public class PddApi : IPddApi
+    internal class PddApi : IPddApi
     {
         internal static readonly JsonSerializer Serializer = SerializerFactory.GetSerializer();
         internal readonly PddRawApi Raw;
@@ -19,7 +19,7 @@ namespace kasthack.yandex.pdd
         public ApiMode Mode
         {
             get => Raw.Mode;
-            set => Raw.Mode= value;
+            set => Raw.Mode = value;
         }
         /// <inheritdoc/>
         public string PddToken {
@@ -44,8 +44,7 @@ namespace kasthack.yandex.pdd
         {
             Raw = new PddRawApi();
             PddToken = pddtoken;
-            if (authtoken != null) AuthToken = authtoken;
-            Mode = authtoken == null ? ApiMode.Admin : ApiMode.Registar;
+            AuthToken = authtoken;
             DomainsMethods = new DomainsMethods(Raw.DomainMethods);
         }
         /// <inheritdoc/>

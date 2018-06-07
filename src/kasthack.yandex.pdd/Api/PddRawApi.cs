@@ -12,14 +12,23 @@ namespace kasthack.yandex.pdd
     /// <summary>
     /// PDD raw API
     /// </summary>
-    public class PddRawApi : IPddRawApi
+    internal class PddRawApi : IPddRawApi
     {
         private static readonly HttpClient Client;
         internal readonly DomainsMethods DomainMethods;
+        private YaToken _authToken;
+
         /// <inheritdoc/>
         public string PddToken { get; set; }
         /// <inheritdoc/>
-        public YaToken AuthToken { get; set; }
+        public YaToken AuthToken
+        {
+            get { return _authToken; }
+            set {
+                _authToken = value;
+                Mode = _authToken != null ? ApiMode.Registar : ApiMode.Admin;
+            }
+        }
         /// <inheritdoc/>
         public ApiMode Mode { get; set; }
         /// <inheritdoc/>
@@ -34,7 +43,6 @@ namespace kasthack.yandex.pdd
         {
             PddToken = pddToken;
             AuthToken = token;
-            Mode = token == null ? ApiMode.Registar : ApiMode.Admin;
             DomainMethods = new DomainsMethods(new DomainRawContext(this, null));
         }
 
@@ -46,7 +54,7 @@ namespace kasthack.yandex.pdd
                 if (AuthToken == null) {
                     throw new InvalidOperationException($"You have to set {nameof(AuthToken)} to make call as a registar");
                 }
-                headers.Authorization = AuthenticationHeaderValue.Parse($"OAuth {AuthToken.Token}");
+                headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {AuthToken.Token}");
             }
         }
 
