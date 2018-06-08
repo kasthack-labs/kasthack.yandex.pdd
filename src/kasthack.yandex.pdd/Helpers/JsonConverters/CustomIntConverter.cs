@@ -17,7 +17,7 @@ namespace kasthack.yandex.pdd.Helpers
                 case JsonToken.Float:
                     return (int)Math.Round((double)reader.Value);
                 case JsonToken.Integer:
-                    return (int)reader.Value;
+                    return Convert.ToInt32(reader.Value);
                 case JsonToken.String:
                     return int.Parse((string)reader.Value);
                 case JsonToken.Null:

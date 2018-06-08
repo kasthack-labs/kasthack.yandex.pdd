@@ -43,11 +43,11 @@ namespace kasthack.yandex.pdd.test.Api
             Assert.AreEqual(ApiMode.Admin, api.Mode);
         }
         [Test]
-        public void RegistarTokenConstructionWorks()
+        public void RegistrarTokenConstructionWorks()
         {
             var api = ApiFactory.GetRawApi(AccessData.PddToken, YaToken.FromRedirectUri(AccessData.OAuthToken));
             ValidateApi(api);
-            Assert.AreEqual(ApiMode.Registar, api.Mode);
+            Assert.AreEqual(ApiMode.Registrar, api.Mode);
         }
     }
 }

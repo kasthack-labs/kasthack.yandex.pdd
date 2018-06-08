@@ -8,6 +8,7 @@ namespace kasthack.yandex.pdd.Entities
     {
         DomainActivate,
         MxActivate,
-        Added
+        Added,
+        None
     }
 }

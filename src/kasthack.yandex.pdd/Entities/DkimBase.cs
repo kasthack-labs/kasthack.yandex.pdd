@@ -13,5 +13,9 @@
         ///A TXT record with a public DKIM key for independently making settings.
         ///</summary>
         public string Txtrecord { get; set; }
+        ///<summary>
+        ///A TXT record with a public DKIM key for independently making settings.
+        ///</summary>
+        public string TxtrecordContent { get; set; }
     }
 }

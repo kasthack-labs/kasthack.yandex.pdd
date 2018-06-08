@@ -14,7 +14,7 @@ namespace kasthack.yandex.pdd.Entities
         public bool MasterAdmin { get; set; }
 
         [JsonProperty("dkim-ready")]
-        public bool DkimReady { get; set; }
+        public bool? DkimReady { get; set; }
 
         [JsonProperty("emails-max-count")]
         public int EmailsMaxCount { get; set; }
@@ -23,5 +23,9 @@ namespace kasthack.yandex.pdd.Entities
         public int EmailsCount { get; set; }
 
         public bool Nodkim { get; set; }
+
+        //---------------------undocumented
+        public bool FromRegistrar { get; set; }
+        public bool WsTechnical { get; set; }
     }
 }

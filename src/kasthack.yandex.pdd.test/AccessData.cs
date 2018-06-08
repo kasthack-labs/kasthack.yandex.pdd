@@ -9,7 +9,7 @@ namespace kasthack.yandex.pdd.test
         public AccessData(string oauthToken, string domain, string pddToken) {
             OAuthToken = oauthToken;
             Domain = domain;
-            PddToken = PddToken;
+            PddToken = pddToken;
         }
         public string OAuthToken { get; }
         public string Domain { get; }

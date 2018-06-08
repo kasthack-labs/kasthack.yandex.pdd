@@ -10,8 +10,8 @@
         /// </summary>
         Admin,
         /// <summary>
-        /// Registar mode (PDD and OAuth tokens are passed, requesting /registar/ methods)
+        /// Registrar mode (PDD and OAuth tokens are passed, requesting /registar/ methods)
         /// </summary>
-        Registar
+        Registrar
     }
 }

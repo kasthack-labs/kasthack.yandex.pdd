@@ -26,7 +26,7 @@ namespace kasthack.yandex.pdd
             get { return _authToken; }
             set {
                 _authToken = value;
-                Mode = _authToken != null ? ApiMode.Registar : ApiMode.Admin;
+                Mode = _authToken != null ? ApiMode.Registrar : ApiMode.Admin;
             }
         }
         /// <inheritdoc/>
@@ -49,7 +49,7 @@ namespace kasthack.yandex.pdd
         private void UpdateHeaders(HttpRequestHeaders headers)
         {
             headers.Add("PddToken", PddToken);
-            if (Mode == ApiMode.Registar)
+            if (Mode == ApiMode.Registrar)
             {
                 if (AuthToken == null) {
                     throw new InvalidOperationException($"You have to set {nameof(AuthToken)} to make call as a registar");

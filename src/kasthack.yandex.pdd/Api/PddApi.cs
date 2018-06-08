@@ -13,7 +13,7 @@ namespace kasthack.yandex.pdd
     {
         internal static readonly JsonSerializer Serializer = SerializerFactory.GetSerializer();
         internal readonly PddRawApi Raw;
-        private readonly DomainsMethods DomainsMethods;
+        private readonly IDomainsMethods DomainsMethods;
 
         /// <inheritdoc/>
         public ApiMode Mode

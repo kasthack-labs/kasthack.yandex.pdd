@@ -25,5 +25,7 @@
         /// Domains
         /// </summary>
         public DomainInfo[] Domains { get; set; }
+        //------------------undocumented
+        public string Order { get; set; }
     }
 }
